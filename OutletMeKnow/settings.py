@@ -80,17 +80,20 @@ WSGI_APPLICATION = 'OutletMeKnow.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+if os.getenv('IN_CONTAINER'):
+    PG_HOST = 'postgres_db'
+else:
+    PG_HOST = 'postgres_db'
 
 DATABASES = {
     'default': {
-	'ENGINE': 'django.db.backends.postgresql',
+    'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'outletmeknow',
         'USER': 'joe',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
